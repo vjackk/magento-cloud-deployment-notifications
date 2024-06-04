@@ -1,0 +1,50 @@
+<?php
+
+declare(strict_types=1);
+
+namespace magento-cloud-deployment-notifications\src\Service-cloud-deployment-notifications\src\Service;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Log\LoggerInterface;
+
+/**
+ * Teams service
+ */
+class Teams
+{
+    /**
+     * @var LoggerInterface
+     */
+    private LoggerInterface $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(
+        LoggerInterface $logger
+    ) {
+        $this->logger = $logger;
+    }
+
+    /**
+     * Send notification.
+     * @return bool
+     */
+    public function doRequest($webhookUrl, $successMessage)
+    {
+        $client = new Client();
+        $payload = [
+            'text' => $successMessage
+        ];
+        try {
+            $response = $client->post($webhookUrl, [
+                'json' => $payload
+            ]);
+            return $response->getStatusCode() == 200;
+        } catch (GuzzleException $e) {
+            $this->logger->error($e->getMessage());
+            return false;
+        }
+    }
+}
