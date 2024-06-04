@@ -41,7 +41,9 @@ class Teams
             $response = $client->post($webhookUrl, [
                 'json' => $payload
             ]);
-            return $response->getStatusCode() == 200;
+            if ($response->getStatusCode() == 200) {
+                $this->logger->info('Test');
+            }
         } catch (GuzzleException $e) {
             $this->logger->error($e->getMessage());
             return false;
