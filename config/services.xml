@@ -15,5 +15,9 @@
         <service id="Vjackk\DeploymentNotifications\Filesystem\FileSystemException" autowire="false" />
         <service id="Vjackk\DeploymentNotifications\Config\WebhookData" autowire="false" />
         <service id="Vjackk\DeploymentNotifications\Config\WebhookDataInterface" alias="Vjackk\DeploymentNotifications\Config\WebhookData" />
+
+        <service id="Vjackk\DeploymentNotifications\Config\WebhookData">
+            <argument type="service" id="Magento\MagentoCloud\Config\EnvironmentDataInterface"/>
+        </service>
     </services>
 </container>
