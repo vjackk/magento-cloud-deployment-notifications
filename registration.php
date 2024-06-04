@@ -1,3 +1,3 @@
 <?php
 
-\Magento\MagentoCloud\ExtensionRegistrar::register('Cloud_DeploymentNotifications', __DIR__);
+\Magento\MagentoCloud\ExtensionRegistrar::register('Vjackk_DeploymentNotifications', __DIR__);

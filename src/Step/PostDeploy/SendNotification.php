@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace magento-cloud-deployment-notifications\src\Step\Deploy-cloud-deployment-notifications\src\Step\PostDeploy;
+namespace Vjackk\DeploymentNotifications\Step\PostDeploy;
 
 use Magento\MagentoCloud\Step\StepException;
 use Magento\MagentoCloud\Step\StepInterface;
-use notifications\src\CloudConfig\WebhookDataInterface;
-use notifications\src\Service\Teams as TeamsService;
+use Vjackk\DeploymentNotifications\Config\WebhookDataInterface;
+use Vjackk\DeploymentNotifications\Service\Teams as TeamsService;
 
 /**
  * Send notification after deployment
@@ -15,7 +15,7 @@ use notifications\src\Service\Teams as TeamsService;
 class SendNotification implements StepInterface
 {
     /**
-     * @var notifications\src\CloudConfig\notifications\src\CloudConfig\WebhookDataInterface
+     * @var WebhookDataInterface
      */
     protected WebhookDataInterface $webhookData;
 
@@ -25,7 +25,7 @@ class SendNotification implements StepInterface
     protected TeamsService $teamsService;
 
     /**
-     * @param notifications\src\CloudConfig\notifications\src\CloudConfig\WebhookDataInterface $webhookData
+     * @param WebhookDataInterface $webhookData
      * @param TeamsService $teamsService
      */
     public function __construct(

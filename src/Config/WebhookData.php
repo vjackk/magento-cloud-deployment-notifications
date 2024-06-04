@@ -2,13 +2,9 @@
 
 declare(strict_types=1);
 
-namespace magento-cloud-deployment-notifications\src\CloudConfig-cloud-deployment-notifications\src\CloudConfig;
+namespace Vjackk\DeploymentNotifications\Config;
 
-use magentouse;
-
-magentouse;
-
-Magento\MagentoCloud\Config\EnvironmentDataInterface;
+use Magento\MagentoCloud\Config\EnvironmentDataInterface;
 
 class WebhookData implements WebhookDataInterface
 {

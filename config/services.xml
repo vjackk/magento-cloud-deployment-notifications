@@ -3,8 +3,8 @@
     <services>
         <defaults autowire="true" autoconfigure="true" public="true"/>
 
-        <prototype namespace="Cloud\DeploymentNotifications\" resource="../src/*" exclude="../src/{Test}"/>
+        <prototype namespace="Vjackk\DeploymentNotifications\" resource="../src/*" exclude="../src/{Test}"/>
 
-        <service id="Cloud\DeploymentNotifications\CloudConfig\WebhookDataInterface" alias="Cloud\DeploymentNotifications\CloudConfig\WebhookData" />
+        <service id="Vjackk\DeploymentNotifications\Config\WebhookDataInterface" alias="Vjackk\DeploymentNotifications\CloudConfig\WebhookData" />
     </services>
 </container>

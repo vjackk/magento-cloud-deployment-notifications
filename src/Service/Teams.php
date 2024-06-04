@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace magento-cloud-deployment-notifications\src\Service-cloud-deployment-notifications\src\Service;
+namespace Vjackk\DeploymentNotifications\Service;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
