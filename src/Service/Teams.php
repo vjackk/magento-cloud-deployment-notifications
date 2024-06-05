@@ -7,7 +7,6 @@ namespace Vjackk\DeploymentNotifications\Service;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
-use Vjackk\DeploymentNotifications\App\Logger;
 
 /**
  * Teams service
@@ -26,7 +25,7 @@ class Teams
 
     /**
      * @param LoggerInterface $logger
-     * @param Client $logger
+     * @param Client $client
      */
     public function __construct(
         LoggerInterface $logger,
@@ -37,10 +36,11 @@ class Teams
     }
 
     /**
-     * Send notification.
+     * @param string $webhookUrl
+     * @param string $successMessage
      * @return bool
      */
-    public function doRequest($webhookUrl, $successMessage)
+    public function doRequest(string $webhookUrl, string $successMessage): bool
     {
         $payload = [
             'text' => $successMessage
@@ -50,11 +50,12 @@ class Teams
                 'json' => $payload
             ]);
             if ($response->getStatusCode() == 200) {
-                $this->logger->info('Test');
+                $this->logger->info('Teams notification sent');
+                return true;
             }
         } catch (GuzzleException $e) {
             $this->logger->error($e->getMessage());
-            return false;
         }
+        return false;
     }
 }

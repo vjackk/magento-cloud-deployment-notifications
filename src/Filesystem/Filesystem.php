@@ -28,7 +28,7 @@ class Filesystem
      * @param string $path
      * @return bool
      */
-    public function exists($path): bool
+    public function exists(string $path): bool
     {
         return file_exists($path);
     }
@@ -92,7 +92,7 @@ class Filesystem
      * @param bool $recursive
      * @return bool
      */
-    public function createDirectory($path, $mode = 0755, $recursive = true): bool
+    public function createDirectory(string $path, int $mode = 0755, bool $recursive = true): bool
     {
         return @mkdir($path, $mode, $recursive);
     }

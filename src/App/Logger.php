@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vjackk\DeploymentNotifications\App;
 
+use Exception;
 use Vjackk\DeploymentNotifications\App\Logger\LineFormatterFactory;
 use Vjackk\DeploymentNotifications\Filesystem\FileList;
 use Vjackk\DeploymentNotifications\Filesystem\Filesystem;
@@ -36,7 +37,7 @@ class Logger extends \Monolog\Logger
                 $formatter = $lineFormatterFactory->create();
                 $handlerInstance->setFormatter($formatter);
                 $handlers[] = $handlerInstance;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $handlers[] = new NullHandler();
             }
         } else {

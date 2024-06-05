@@ -12,13 +12,14 @@ class FileList
     /**
      * @var DirectoryList
      */
-    private $directoryList;
+    private DirectoryList $directoryList;
 
     /**
      * @param DirectoryList $directoryList
      */
-    public function __construct(DirectoryList $directoryList)
-    {
+    public function __construct(
+        DirectoryList $directoryList
+    ) {
         $this->directoryList = $directoryList;
     }
 

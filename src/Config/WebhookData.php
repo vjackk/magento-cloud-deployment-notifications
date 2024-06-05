@@ -11,7 +11,7 @@ class WebhookData
     /**
      * @var EnvironmentDataInterface
      */
-    protected $environmentData;
+    protected EnvironmentDataInterface $environmentData;
 
     /**
      * @param EnvironmentDataInterface $environmentData
@@ -23,7 +23,7 @@ class WebhookData
     }
 
     /**
-     * @inheritDoc
+     * @return string
      */
     public function getTeamsWebhookUrl(): string
     {

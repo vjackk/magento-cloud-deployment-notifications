@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Vjackk\DeploymentNotifications\App;
 
+use Exception;
 use Throwable;
 
 /**
  * Base exception class.
  */
-class GenericException extends \Exception
+class GenericException extends Exception
 {
     /**
      * @param string $message

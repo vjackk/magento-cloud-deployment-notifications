@@ -41,7 +41,7 @@ class SendNotification implements StepInterface
      * @return void
      * @throws StepException
      */
-    public function execute()
+    public function execute(): void
     {
         $this->sendTeamsNotification();
     }
@@ -51,7 +51,7 @@ class SendNotification implements StepInterface
      * @return void
      * @throws StepException
      */
-    private function sendTeamsNotification()
+    private function sendTeamsNotification(): void
     {
         $webhookUrl = $this->webhookData->getTeamsWebhookUrl();
         if (!$webhookUrl) {

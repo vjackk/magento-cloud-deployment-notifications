@@ -12,19 +12,21 @@ class DirectoryList
     /**
      * @var string
      */
-    private $root;
+    private string $root;
 
     /**
      * @var string
      */
-    private $magentoRoot;
+    private string $magentoRoot;
 
     /**
      * @param string $root
      * @param string $magentoRoot
      */
-    public function __construct(string $root, string $magentoRoot)
-    {
+    public function __construct(
+        string $root,
+        string $magentoRoot
+    ) {
         $this->root = realpath($root);
         $this->magentoRoot = realpath($magentoRoot);
     }
