@@ -59,7 +59,7 @@ class SendNotification implements StepInterface
             return;
         }
 
-        $message = str_replace('%1', $branchName, 'Deployment of %1 has started');
+        $message = str_replace('%1', $branchName, 'Deployment of %1 has finished with success');
         if (!$this->teamsService->doRequest($webhookUrl, $message)) {
             throw new StepException('Something went wrong with Teams webhook url');
         }
