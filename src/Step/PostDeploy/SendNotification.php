@@ -6,7 +6,7 @@ namespace Vjackk\DeploymentNotifications\Step\PostDeploy;
 
 use Magento\MagentoCloud\Step\StepException;
 use Magento\MagentoCloud\Step\StepInterface;
-use Vjackk\DeploymentNotifications\Config\WebhookDataInterface;
+use Vjackk\DeploymentNotifications\Config\WebhookData;
 use Vjackk\DeploymentNotifications\Service\Teams as TeamsService;
 
 /**
@@ -15,9 +15,9 @@ use Vjackk\DeploymentNotifications\Service\Teams as TeamsService;
 class SendNotification implements StepInterface
 {
     /**
-     * @var WebhookDataInterface
+     * @var WebhookData
      */
-    protected WebhookDataInterface $webhookData;
+    protected WebhookData $webhookData;
 
     /**
      * @var TeamsService
@@ -25,11 +25,11 @@ class SendNotification implements StepInterface
     protected TeamsService $teamsService;
 
     /**
-     * @param WebhookDataInterface $webhookData
+     * @param WebhookData $webhookData
      * @param TeamsService $teamsService
      */
     public function __construct(
-        WebhookDataInterface $webhookData,
+        WebhookData $webhookData,
         TeamsService $teamsService
     ) {
         $this->webhookData = $webhookData;

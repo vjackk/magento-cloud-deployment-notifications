@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
 <scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:ece-tools:config/scenario.xsd">
-    <step name="send-deploy-notification" type="Vjackk\DeploymentNotifications\Step\Deploy\SendNotification" priority="10" />
+    <step name="send-deploy-notification" type="Vjackk\DeploymentNotifications\Step\Deploy\SendNotification" priority="10">
+        <arguments>
+            <argument name="webhook-data" xsi:type="object">Vjackk\DeploymentNotifications\Config\WebhookData</argument>
+            <argument name="teams-service" xsi:type="object">Vjackk\DeploymentNotifications\Service\Teams</argument>
+        </arguments>
+    </step>
 </scenario>

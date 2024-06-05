@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <defaults autowire="true" public="true"/>
+        <defaults autowire="true" autoconfigure="true" public="true"/>
 
         <prototype namespace="Vjackk\DeploymentNotifications\" resource="../src/*" exclude="../src/{Test}"/>
 
-        <service id="Psr\Log\LoggerInterface" alias="Vjackk\DeploymentNotifications\App\Logger" />
-        <service id="Psr\Container\ContainerInterface" alias="Vjackk\DeploymentNotifications\App\Container" />
-        <service id="Vjackk\DeploymentNotifications\App\Container" autowire="false"/>
-        <service id="Vjackk\DeploymentNotifications\Filesystem\DirectoryList" autowire="false"/>
-        <service id="Composer\Composer"/>
-        <service id="Vjackk\DeploymentNotifications\App\GenericException" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\App\RuntimeException" autowire="false"/>
-        <service id="Vjackk\DeploymentNotifications\Filesystem\FileSystemException" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\Config\WebhookData" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\Config\WebhookDataInterface" alias="Vjackk\DeploymentNotifications\Config\WebhookData" />
-
-        <service id="Vjackk\DeploymentNotifications\Config\WebhookData">
-            <argument type="service" id="Magento\MagentoCloud\Config\EnvironmentDataInterface"/>
-        </service>
+        <service id="Vjackk\DeploymentNotifications\Step\Deploy\SendNotification" autowire="false" />
+        <service id="Vjackk\DeploymentNotifications\Step\PostDeploy\SendNotification" autowire="false" />
     </services>
 </container>
