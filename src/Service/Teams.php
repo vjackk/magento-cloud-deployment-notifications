@@ -40,10 +40,10 @@ class Teams
      * @param string $successMessage
      * @return bool
      */
-    public function doRequest(string $webhookUrl, string $successMessage): bool
+    public function doRequest(string $webhookUrl, string $message): bool
     {
         $payload = [
-            'text' => $successMessage
+            'text' => $message
         ];
         try {
             $response = $this->client->post($webhookUrl, [

@@ -54,12 +54,13 @@ class SendNotification implements StepInterface
     private function sendTeamsNotification(): void
     {
         $webhookUrl = $this->webhookData->getTeamsWebhookUrl();
+        $branchName = $this->webhookData->getBranchName();
         if (!$webhookUrl) {
             return;
         }
 
-        $successMessage = 'Deployment has been finished with success';
-        if (!$this->teamsService->doRequest($webhookUrl, $successMessage)) {
+        $message = str_replace('%1', $branchName, 'Deployment of %1 has started');
+        if (!$this->teamsService->doRequest($webhookUrl, $message)) {
             throw new StepException('Something went wrong with Teams webhook url');
         }
     }

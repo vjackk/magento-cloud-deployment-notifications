@@ -29,4 +29,12 @@ class WebhookData
     {
         return $this->environmentData->getVariables()['TEAMS_WEBHOOK_URL'] ?? '';
     }
+
+    /**
+     * @return string
+     */
+    public function getBranchName(): string
+    {
+        return $this->environmentData->getBranchName();
+    }
 }
