@@ -6,4 +6,7 @@
             <argument name="teams-service" xsi:type="object">Vjackk\DeploymentNotifications\Service\Teams</argument>
         </arguments>
     </step>
+    <onFail>
+        <action name="send-failed-notification" type="Vjackk\DeploymentNotifications\OnFail\Action\SendFailedNotification" priority="200"/>
+    </onFail>
 </scenario>
