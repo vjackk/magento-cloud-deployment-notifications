@@ -2,7 +2,7 @@
     "name": "vjackk/deployment-notifications",
     "description": "Deployment notifications",
     "type": "magento2-component",
-    "version": "3.0.11",
+    "version": "3.0.12",
     "license": "OSL-3.0",
     "autoload": {
         "files": [ "registration.php" ],
