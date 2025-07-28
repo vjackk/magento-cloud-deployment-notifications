@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vjackk\DeploymentNotifications\Step\Deploy;
+namespace Vjackk\DeploymentNotifications\Step\Build;
 
 use Magento\MagentoCloud\Step\StepException;
 use Magento\MagentoCloud\Step\StepInterface;
