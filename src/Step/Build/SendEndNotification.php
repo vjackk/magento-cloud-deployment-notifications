@@ -59,8 +59,8 @@ class SendEndNotification implements StepInterface
             return;
         }
 
-        $message = str_replace('%1', $branchName, 'Build of %1 has finished with success');
-        if (!$this->teamsService->doRequest($webhookUrl, $message)) {
+        $message = sprintf('Build of %s has finished with success', $branchName);
+        if (!$this->teamsService->doRequest($webhookUrl, $message, 'BUILD_END')) {
             throw new StepException('Something went wrong with Teams webhook url');
         }
     }

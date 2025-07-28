@@ -40,8 +40,10 @@ class Teams
      * @param string $successMessage
      * @return bool
      */
-    public function doRequest(string $webhookUrl, string $message): bool
+    public function doRequest(string $webhookUrl, string $message, $step): bool
     {
+        $this->logger->info(sprintf('%s : doRequest', $step));
+
         $payload = [
             'text' => $message
         ];
@@ -50,7 +52,7 @@ class Teams
                 'json' => $payload
             ]);
             if ($response->getStatusCode() == 200) {
-                $this->logger->info('Teams notification sent');
+                $this->logger->info(sprintf('%s : Teams notification sent', $step));
                 return true;
             }
         } catch (GuzzleException $e) {

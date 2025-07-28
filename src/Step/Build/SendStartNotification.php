@@ -59,8 +59,8 @@ class SendStartNotification implements StepInterface
             return;
         }
 
-        $message = str_replace('%1', $branchName, 'Build of %1 has started');
-        if (!$this->teamsService->doRequest($webhookUrl, $message)) {
+        $message = sprintf('Deployment of %s has started', $branchName);
+        if (!$this->teamsService->doRequest($webhookUrl, $message, 'BUILD_START')) {
             throw new StepException('Something went wrong with Teams webhook url');
         }
     }
