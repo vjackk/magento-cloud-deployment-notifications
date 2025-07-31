@@ -6,13 +6,17 @@ namespace Vjackk\DeploymentNotifications\OnFail\Action;
 
 use Magento\MagentoCloud\OnFail\Action\ActionException;
 use Magento\MagentoCloud\OnFail\Action\ActionInterface;
-use Magento\MagentoCloud\Step\StepException;
-use Throwable;
 use Vjackk\DeploymentNotifications\Config\WebhookData;
 use Vjackk\DeploymentNotifications\Service\Teams;
+use Vjackk\DeploymentNotifications\Tools\Util;
 
-class SendFailedNotification implements ActionInterface
+class SendNotification implements ActionInterface
 {
+    /**
+     * @var Util
+     */
+    protected Util $util;
+
     /**
      * @var WebhookData
      */
@@ -24,29 +28,51 @@ class SendFailedNotification implements ActionInterface
     protected Teams $teamsService;
 
     /**
+     * @var string
+     */
+    protected string $stepCode;
+
+    /**
+     * @var array
+     */
+    protected array $messageWrapper;
+
+    /**
+     * @param Util $util
      * @param WebhookData $webhookData
      * @param Teams $teamsService
+     * @param string $stepCode
+     * @param array $messageWrapper
      */
     public function __construct(
+        Util $util,
         WebhookData $webhookData,
-        Teams $teamsService
+        Teams $teamsService,
+        string $stepCode = '',
+        array $messageWrapper = []
     ) {
+        $this->util = $util;
         $this->webhookData = $webhookData;
         $this->teamsService = $teamsService;
+        $this->stepCode = $stepCode;
+        $this->messageWrapper = $messageWrapper;
     }
 
     public function execute(): void
     {
         try {
             $webhookUrl = $this->webhookData->getTeamsWebhookUrl();
-            $branchName = $this->webhookData->getBranchName();
             if (!$webhookUrl) {
                 return;
             }
 
-            $message = str_replace('%1', $branchName, 'Deployment of %1 has failed. Check logs for details.');
-            if (!$this->teamsService->doRequest($webhookUrl, $message)) {
-                throw new StepException('Something went wrong with Teams webhook url');
+            $message = call_user_func_array(
+                'sprintf',
+                $this->util->formatMessageWrapper($this->messageWrapper)
+            );
+            
+            if (!$this->teamsService->doRequest($webhookUrl, $message, $this->stepCode)) {
+                throw new ActionException('Something went wrong with Teams webhook url');
             }
         } catch (Throwable $exception) {
             throw new ActionException(

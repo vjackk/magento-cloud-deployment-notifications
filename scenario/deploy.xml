@@ -1,12 +1,29 @@
 <?xml version="1.0"?>
 <scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:ece-tools:config/scenario.xsd">
-    <step name="send-deploy-notification" type="Vjackk\DeploymentNotifications\Step\Deploy\SendNotification" priority="10">
+    <step name="send-deploy-notification" type="Vjackk\DeploymentNotifications\Step\SendNotification" priority="10">
         <arguments>
+            <argument name="util" xsi:type="object">Vjackk\DeploymentNotifications\Tools\Util</argument>
             <argument name="webhook-data" xsi:type="object">Vjackk\DeploymentNotifications\Config\WebhookData</argument>
             <argument name="teams-service" xsi:type="object">Vjackk\DeploymentNotifications\Service\Teams</argument>
+            <argument name="step-code" xsi:type="string">DEPLOY</argument>
+            <argument name="message-wrapper" xsi:type="array">
+                <item name="message" xsi:type="string">Deployment of %s has started with success.</item>
+                <item name="argument-1" xsi:type="object">Vjackk\DeploymentNotifications\Model\Variable\GetBranchName</item>
+            </argument>
         </arguments>
     </step>
     <onFail>
-        <action name="send-failed-notification" type="Vjackk\DeploymentNotifications\OnFail\Action\SendFailedNotification" priority="200"/>
+        <action name="send-failed-notification" type="Vjackk\DeploymentNotifications\OnFail\Action\SendNotification" priority="200">
+            <arguments>
+                <argument name="util" xsi:type="object">Vjackk\DeploymentNotifications\Tools\Util</argument>
+                <argument name="webhook-data" xsi:type="object">Vjackk\DeploymentNotifications\Config\WebhookData</argument>
+                <argument name="teams-service" xsi:type="object">Vjackk\DeploymentNotifications\Service\Teams</argument>
+                <argument name="step-code" xsi:type="string">DEPLOY</argument>
+                <argument name="message-wrapper" xsi:type="array">
+                    <item name="message" xsi:type="string">Deployment of %s has failed. Check logs for details.</item>
+                    <item name="argument-1" xsi:type="object">Vjackk\DeploymentNotifications\Model\Variable\GetBranchName</item>
+                </argument>
+            </arguments>
+        </action>
     </onFail>
 </scenario>

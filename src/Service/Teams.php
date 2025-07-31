@@ -42,8 +42,6 @@ class Teams
      */
     public function doRequest(string $webhookUrl, string $message, $step): bool
     {
-        $this->logger->info(sprintf('%s : doRequest', $step));
-
         $payload = [
             'text' => $message
         ];

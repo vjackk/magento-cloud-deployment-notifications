@@ -5,13 +5,10 @@
 
         <prototype namespace="Vjackk\DeploymentNotifications\" resource="../src/*" exclude="../src/{Test}"/>
 
-        <service id="Vjackk\DeploymentNotifications\App\RuntimeException" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\App\GenericException" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\Filesystem\DirectoryList" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\Filesystem\FileSystemException" autowire="false" />
         <service id="GuzzleHttp\Client"/>
         <service id="Magento\MagentoCloud\Config\EnvironmentDataInterface" alias="Magento\MagentoCloud\Config\EnvironmentData"/>
-        <service id="Vjackk\DeploymentNotifications\Step\Deploy\SendNotification" autowire="false" />
-        <service id="Vjackk\DeploymentNotifications\Step\PostDeploy\SendNotification" autowire="false" />
+
+        <service id="Vjackk\DeploymentNotifications\Step\SendNotification" autowire="true"/>
+        <service id="Vjackk\DeploymentNotifications\OnFail\Action\SendNotification" autowire="true"/>
     </services>
 </container>
