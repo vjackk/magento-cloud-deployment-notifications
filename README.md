@@ -2,7 +2,7 @@
 Magento Cloud Deployment Notifications
 
 ## Installation
-`composer require composer require vjackk/deployment-notifications`
+`composer require vjackk/deployment-notifications`
 
 ## Teams Configuration
 - Create a new incoming webhook following this documentation : https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet
