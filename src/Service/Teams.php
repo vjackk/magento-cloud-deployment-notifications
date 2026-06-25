@@ -36,20 +36,40 @@ class Teams
     }
 
     /**
+     * Sends a Teams notification via Power Automate webhook using Adaptive Cards format.
+     *
      * @param string $webhookUrl
-     * @param string $successMessage
+     * @param string $message
+     * @param string $step
      * @return bool
      */
     public function doRequest(string $webhookUrl, string $message, $step): bool
     {
         $payload = [
-            'text' => $message
+            'type' => 'message',
+            'attachments' => [
+                [
+                    'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    'content' => [
+                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                        'type' => 'AdaptiveCard',
+                        'version' => '1.2',
+                        'body' => [
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $message,
+                                'wrap' => true,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
         try {
             $response = $this->client->post($webhookUrl, [
                 'json' => $payload
             ]);
-            if ($response->getStatusCode() == 200) {
+            if ($response->getStatusCode() == 202) {
                 $this->logger->info(sprintf('%s : Teams notification sent', $step));
                 return true;
             }
